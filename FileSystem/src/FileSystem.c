@@ -70,25 +70,28 @@ void MostrarConsola ();
 void MostrarOpcionesArchivos();
 void MostrarOpcionesDirectorios();
 void MostrarOpcionesBloques();
+void MostrarOpcionesNodos();
 
 /*Funciones de acciones*/
 void AccionArchivos(){
-	int Accion;
-
-	scanf("%d", &Accion);
-
+	char Accion;
+	fflush(stdin);
+	Accion= getchar() - 48;
+	getchar();
 	switch(Accion){
 	case 1: EliminarArchivo(); break;
 	case 2: RenombrarArchivo(); break;
 	case 3: MoverArchivo(); break;
 	case 4: MostrarConsola(); break;
+	default : printf("Error Arch %d", Accion);
 	}
 }
 void AccionDirectorios(){
-	int Accion;
+	char Accion;
+	fflush(stdin);
 
-	scanf("%d", &Accion);
-
+	Accion= getchar() - 48;
+	getchar();
 	switch(Accion){
 	case 1: CrearDirectorio(); break;
 	case 2: ELiminarDirectorio(); break;
@@ -98,10 +101,10 @@ void AccionDirectorios(){
 	}
 }
 void AccionBloques(){
-	int Accion;
-
-	scanf("%d", &Accion);
-
+	char Accion;
+	fflush(stdin);
+	Accion= getchar() - 48;
+	getchar();
 	switch(Accion){
 	case 1: VerBloque(); break;
 	case 2: BorrarBloque(); break;
@@ -109,11 +112,23 @@ void AccionBloques(){
 	case 4: MostrarConsola(); break;
 	}
 }
+void AccionNodos(){
+	char Accion;
+	fflush(stdin);
+	Accion= getchar() - 48;
+	getchar();
+	switch(Accion){
+		case 1: AgregarNodo(); break;
+		case 2: EliminarNodo(); break;
+		case 3: MostrarConsola(); break;
+	}
+}
 void AccionConsola(){
-	int Accion;
+	char Accion;
+	fflush(stdin);
 
-	scanf("%d", &Accion);
-
+	Accion= getchar()- 48;
+	getchar();
 	switch(Accion){
 	case 1: Formatear(); break;
 	case 2: MostrarOpcionesArchivos(); AccionArchivos(); break;
@@ -122,10 +137,9 @@ void AccionConsola(){
 	case 5: CopiarDeMDFSAFileSystem(); break;
 	case 6: SolicitarMD5(); break;
 	case 7: MostrarOpcionesBloques(); AccionBloques(); break;
-	case 8: AgregarNodo(); break;
-	case 9: EliminarNodo(); break;
-	case 10: return;
-	default : puts("\nOpción errónea. Vuelva a ingresar una opción\n\n"); MostrarConsola();
+	case 8: MostrarOpcionesNodos(); AccionNodos(); break;
+	case 9: return;
+	default : printf("\nOpción errónea. Vuelva a ingresar una opción %d\n\n", Accion); MostrarConsola();
 	}
 
 }
@@ -140,9 +154,8 @@ void MostrarConsola (){
 		"5- Copiar un archivo del MDFS al filesystem local\n"
 		"6- Solicitar el MD5 de un archivo en MDFS\n"
 		"7- Ver/Borrar/Copiar los bloques que componen un archivo.\n"
-		"8- Agregar un nodo de datos\n"
-		"9- Eliminar un nodo de datos\n"
-		"10- Salir\n");
+		"8- Agregar/Eliminar un nodo de datos\n"
+		"9- Salir\n");
 
 	AccionConsola();
 }
@@ -153,11 +166,16 @@ void MostrarOpcionesArchivos(){
 		"4- Volver\n");
 }
 void MostrarOpcionesDirectorios(){
-	puts("1- Crear directorio "
+	puts("1- Crear directorio \n"
 		"2- Eliminar directorio\n"
 		"3- Renombrar directorio\n"
 		"4- Mover directorio\n"
 		"5- Volver\n");
+}
+void MostrarOpcionesNodos(){
+	puts("1- Agregar Nodo\n"
+		"2- Eliminar Nodo\n"
+		"3- Volver\n");
 }
 void MostrarOpcionesBloques(){
 	puts("1- Ver bloque\n"
@@ -167,10 +185,10 @@ void MostrarOpcionesBloques(){
 }
 
 
-
-int main(void) {
+int main(void){
 
 	MostrarConsola();
+	printf("\nFin");
 
 	return 1;
 }
